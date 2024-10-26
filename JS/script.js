@@ -1,50 +1,28 @@
-function countDown(){
+function countDown() {
+    const days = document.querySelector("#days");
+    const hours = document.querySelector("#hours");
+    const minutes = document.querySelector("#minutes");
+    const seconds = document.querySelector("#seconds");
 
-  const days = document.querySelector("#days");
-  const hours = document.querySelector("#hours");
-  const minutes = document.querySelector("#minutes");
-  const seconds = document.querySelector("#seconds");
+    const currentDate = new Date();
+    const currentYear = currentDate.getFullYear();
+    const newYear = new Date(`January 1, ${currentYear + 1} 00:00:00`);
 
-currentDate = new Date();
- console.log(currentDate);
+    const difference = newYear - currentDate;
 
-currentYear = new Date().getFullYear();
- console.log(currentYear);
+    const d = Math.floor(difference / 1000 / 60 / 60 / 24);
+    const h = Math.floor((difference / 1000 / 60 / 60) % 24);
+    const m = Math.floor((difference / 1000 / 60) % 60);
+    const s = Math.floor((difference / 1000) % 60);
 
- console.log("Next Year :" ,currentYear+1);
-
- const newYear = new Date(`01 january  ${currentYear+1} 00:00:00`);  //mentioning New Year Date
- console.log(newYear);
-
-const difference = newYear - currentDate;
- console.log(difference);   //1735732797976 milli second
-
-const d = Math.floor(difference/1000/60/60/24);  //logic for coverting ms to days
- console.log("DAYS :" , d , " days");
-
-const h = Math.floor((difference/1000/60/60)%24);
- console.log("HOURS : " , h , " hours");
-
-const m =Math.floor((difference/1000/60)%60);
- console.log("MINUTES : " , m ," minutes");
-
-const s = Math.floor((difference/1000)%60);
- console.log("SECONDS : ",s," seconds");
-
-days.innerHTML=d<10?"0"+d:d;
-hours.innerHTML=h<10?"0"+h:h; 
-minutes.innerHTML=m<10?"0"+m:m;
-seconds.innerHTML=s<10?"0"+s:s;
- 
-
+    // Display the values
+    days.innerHTML = d < 10 ? "0" + d : d;
+    hours.innerHTML = h < 10 ? "0" + h : h;
+    minutes.innerHTML = m < 10 ? "0" + m : m;
+    seconds.innerHTML = s < 10 ? "0" + s : s;
 }
 
-
-
-// countDown();
-
-setInterval(countDown,1000);
-
-
-
-
+// Call countDown once to initialize the values
+countDown();
+// Update the countdown every second
+setInterval(countDown, 1000);
